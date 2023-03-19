@@ -82,6 +82,7 @@ h2.battlefield{
 }
 
 .playersChoice{
+  font-family: "Roboto", sans-serif;
   color: white;
   font-size: 96px;
   background: none;
@@ -93,20 +94,27 @@ h2.battlefield{
 /* Players cards*/
 
 .player1 {
+  display: flex;
+  flex-flow: column;
   grid-column: 1/4;
   grid-row: 1/6;
   display: flex;
-  justify-content: center;
+  justify-content: top;
+  align-items: center;
 }
 .center-field {
   grid-column: 4/10;
   grid-row: 1/6;
 }
 .player2 {
+  display: flex;
+  flex-flow: column;
   grid-column: 10/13;
   grid-row: 1/6;
   display: flex;
-  justify-content: center;
+  justify-content: top;
+  align-items: center;
+
 }
 
 .playerImg {
@@ -117,6 +125,11 @@ h2.battlefield{
   border-color: grey;
 }
 
+.players-name {
+color:white;
+font-size: 50px;
+
+}
 
 
 .hidden{
