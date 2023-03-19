@@ -1,0 +1,1 @@
+This is part of the Odin Project curriculum. [Tic-tac-toe](https://www.theodinproject.com/lessons/javascript-tic-tac-toe)
