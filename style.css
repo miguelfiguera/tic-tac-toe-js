@@ -78,6 +78,15 @@ h2.battlefield{
     border-color: grey;
     background-color: rgb(33, 33, 177);
     border-radius: 25px;
+    justify-content: center;
+}
+
+.playersChoice{
+  color: white;
+  font-size: 96px;
+  background: none;
+  text-align: center;
+  margin: 0 0 34% 0;
 }
 
 
@@ -107,6 +116,7 @@ h2.battlefield{
   border-style: solid;
   border-color: grey;
 }
+
 
 
 .hidden{

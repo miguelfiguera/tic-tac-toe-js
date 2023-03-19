@@ -11,8 +11,31 @@ const battlefield = (function () {
 
 // eventlisteners and functions
 
-const eventListener=(()=>{
-    let divs=getElementsByclassName('gameSquare')
+let currentPlayer = {};
+currentPlayer.marker = "Q";
+
+const eventListener = (() => {
+  let divs = document.getElementsByClassName("gameSquare");
+  for (let i = 0; i < divs.length; i++) {
+    divs[i].addEventListener("click", function () {
+      if (divs[i].firstChild) {
+      } else {
+        let p = document.createElement("p");
+        p.innerText = currentPlayer.marker;
+        p.classList.add("playersChoice");
+        p.id="p"+[i]
+        divs[i].appendChild(p);
+        //every P should have and ID.
+        //I should append the players swap here.
+        //add a check for winning here also nums of ps go
+        //from 0 to 8
+      }
+    });
+  }
+
+  //here you should add the form part
+
+  return { divs };
 })();
 
 //Players Object Factory Function
@@ -26,15 +49,8 @@ function Player(name, marker) {
 
 // handling form
 
-
-
-
 // game controller (game steps)
 
-const game=(()=>{
-
-
-
-
-return{}
+const game = (() => {
+  return {};
 })();
