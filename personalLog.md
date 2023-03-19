@@ -25,3 +25,17 @@ My best practice till now is to write the code on window scope, test it, see wha
 ## 3. Better commits
 
 After reading a lot of material about what a good commit is, I'm trying to write using the best practices for the commits, imperative writing and all that. This way I hope that commits are clearer and my communication skills improve. Also, writing the commits in VScode is so different from everything else. No more -m flag for commits.
+
+## 4. Writing Code this way...
+
+It was really easy, everything is just wrapped up and the rule of thumb is that all the variables should be accesed by functions inside the object, so no one can touch the variables directly.
+
+## Conclusion
+
+JS is the simplest language ever, but that makes the canvas to write kind of infinite and thats the hardest part of everything. You have to think much more than when using ruby that has all those conventions and is Object oriented since the conception.
+
+Thats not bad, but the approach is different and you have to consider that each time you want to construct something. I still think first in ruby some stuff, but using both Im beggining to think just in programming, away from the code language and more close to "I want THIS to happen" approach, test driven development with out the tests (for now) is the best analogy.
+
+Hope you enjoy this game.
+
+M.Quintero.

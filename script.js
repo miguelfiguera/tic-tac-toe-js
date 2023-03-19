@@ -29,7 +29,7 @@ const battlefield = (function () {
     let one = document.getElementById("playerImg1");
     let two = document.getElementById("playerImg2");
     one.src = "250.jpg";
-    two.src = "Borg_Queen_2372.jpg";
+    two.src = "Romulan_Commander.webp";
   };
 
   let x = getRandomIntInclusive(1, 2);
@@ -54,8 +54,8 @@ const eventListenerDivs = (() => {
         p.classList.add("playersChoice");
         p.id = "p" + [i];
         divs[i].appendChild(p);
-        currentPlayer.pushChoice(i)
-        //check for victory
+        currentPlayer.pushChoice(i);
+        game.checkForVictory();
         game.swapPlayer();
       }
     });
@@ -91,7 +91,7 @@ const createPlayer = (() => {
 
 function Player(name, marker) {
   let playerSquares = [];
-  let winCount = 0;
+  let winCount = [];
   let isHuman = true;
 
   const getName = () => {
@@ -109,9 +109,9 @@ function Player(name, marker) {
   const pushChoice = (number) => {
     playerSquares.push(number);
   };
-  const addtoWinning=()=>{
-    winCount+=1;
-  }
+  const addtoWinning = () => {
+    winCount.push("Win");
+  };
   const resetPlayerSquares = () => {
     playerSquares = [];
   };
@@ -136,19 +136,105 @@ const game = (() => {
       : (currentPlayer = player1);
   };
 
-  return { swapPlayer };
+  const checkForVictory = () => {
+    let plyrs = [player1, player2];
+    for (let i = 0; i < plyrs.length; i++) {
+      //horizontal
+      if (
+        plyrs[i].getPlayerSquares().indexOf(0) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(2) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(1) >= 0
+      ) {
+        victory(plyrs[i]);
+      } else if (
+        plyrs[i].getPlayerSquares().indexOf(3) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(4) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(5) >= 0
+      ) {
+        victory(plyrs[i]);
+      } else if (
+        plyrs[i].getPlayerSquares().indexOf(6) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(7) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(8) >= 0
+      ) {
+        victory(plyrs[i]);
+      }
+
+      //vertical
+      else if (
+        plyrs[i].getPlayerSquares().indexOf(6) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(3) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(0) >= 0
+      ) {
+        victory(plyrs[i]);
+      } else if (
+        plyrs[i].getPlayerSquares().indexOf(1) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(4) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(7) >= 0
+      ) {
+        victory(plyrs[i]);
+      } else if (
+        plyrs[i].getPlayerSquares().indexOf(2) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(5) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(8) >= 0
+      ) {
+        victory(plyrs[i]);
+      }
+
+      //diagonal
+      else if (
+        plyrs[i].getPlayerSquares().indexOf(0) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(4) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(8) >= 0
+      ) {
+        victory(plyrs[i]);
+      } else if (
+        plyrs[i].getPlayerSquares().indexOf(2) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(4) >= 0 &&
+        plyrs[i].getPlayerSquares().indexOf(6) >= 0
+      ) {
+        victory(plyrs[i]);
+      } else if (
+        player1.getPlayerSquares().length + player2.getPlayerSquares().length ==
+        9
+      ) {
+        tie();
+      } else {
+      }
+    }
+  };
+
+  const updateScore=(winner)=>{
+    winner==player1 
+    ? score1.innerText=`Score: ${player1.getWinCount()}`
+    : score2.innerText=`Score: ${player2.getWinCount()}`
+  }
+
+  const victory = (player) => {
+    player.addtoWinning();
+    updateScore(player);
+    player1.resetPlayerSquares();
+    player2.resetPlayerSquares();
+    alert(`Congrats ${player.getName()} You have won this round!`);
+    resetDivs()
+  }
+
+  const tie = () => {
+    player1.resetPlayerSquares();
+    player2.resetPlayerSquares();
+    alert("No winners this Round");
+    resetDivs()
+
+  };
+
+  const resetDivs=()=>{
+    let divs = document.getElementsByClassName("gameSquare");
+    for (let i = 0; i < divs.length; i++) {
+      if (divs[i].firstChild) {
+        divs[i].firstChild.remove();
+      } else {
+      }
+    }
+  }
+  return { resetDivs,swapPlayer, victory, checkForVictory, tie,updateScore };
 })();
-
-const checkForVictory = () => {
-  let players=[player1,player2];
-  //using an array to see the index of elements
-  //to define the winning cases
-  //checking one by one of the two players array
-  //and calling victory in top of the victorius one.
-
-  //winning cases = 0,1,2 - 3,4,5 - 6,7,8
-  //0,3,6 - 1,4,7 - 2,5,8
-  //0,4,8 - 2,4,6
-
-  
-};
