@@ -12,6 +12,10 @@
   font-family: "Space Grotesk", sans-serif;
 }
 
+input {
+  color:white;
+}
+
 header {
   display: flex;
   justify-content: center;
@@ -131,6 +135,10 @@ font-size: 50px;
 
 }
 
+.score{
+  color:white;
+  font-size: 35px;
+}
 
 .hidden{
     display:none;
